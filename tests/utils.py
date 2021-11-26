@@ -6,6 +6,10 @@ from tests.consts import CURRENT_PROCESS_FILE_DESCRIPTORS_FOLDER
 
 
 def _get_current_open_files() -> List[Path]:
+    """
+    Read the current processes open file descriptors and return them as a list of Path objects.
+    This function is useful in order to test the player and make sure that it is opening the correct files.
+    """
     open_files = []
     for file_descriptor_name in listdir(CURRENT_PROCESS_FILE_DESCRIPTORS_FOLDER):
         try:
@@ -17,5 +21,9 @@ def _get_current_open_files() -> List[Path]:
     return open_files
 
 
-def check_if_file_was_open(file_name: str) -> bool:
-    return any(map(lambda open_file: file_name in open_file.as_posix(), _get_current_open_files()))
+def check_if_file_is_open(file_name: str) -> bool:
+    """
+    Check if the given file_name is open in the current process.
+    :param file_name: The filename to test.
+    """
+    return any(map(lambda open_file: file_name == open_file.name, _get_current_open_files()))
