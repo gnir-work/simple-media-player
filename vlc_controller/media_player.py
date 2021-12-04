@@ -3,8 +3,9 @@ All of the basic sdk functions needed for streaming the video.
 """
 from ctypes import Union
 import vlc
-from vlc import Instance, Media
+from vlc import Instance, Media, State
 from pathlib import Path
+
 
 class MediaPlayer:
     def __init__(self) -> None:
@@ -22,4 +23,9 @@ class MediaPlayer:
         self.player.play()
 
     def pause(self):
-        self.player.pause()
+        if self.player.get_state() == State.Playing:
+            self.player.pause()
+
+    def resume(self):
+        if self.player.get_state() == State.Paused:
+            self.player.pause()

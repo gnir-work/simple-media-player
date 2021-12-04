@@ -21,3 +21,9 @@ class SeriesPlayer:
 
     def stop(self):
         self.media_player.stop()
+
+    def pause(self):
+        self.media_player.pause()
+
+    def resume(self):
+        self.media_player.resume()
