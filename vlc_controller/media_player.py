@@ -1,7 +1,7 @@
 """
 All of the basic sdk functions needed for streaming the video.
 """
-from ctypes import Union
+from typing import Union
 import vlc
 from vlc import Instance, Media, State
 from pathlib import Path
