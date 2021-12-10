@@ -3,6 +3,10 @@ GCC_FLAGS="-fcommon"
 setup:
 	python3 -m venv venv
 
+
+install-apt-deps:
+	sudo apt-get install lirc -y
+
 install-deps:
 	export GCC_FLAGS=$(GCC_FLAGS)
 	./venv/bin/pip install -r requirments.txt
