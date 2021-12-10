@@ -20,6 +20,7 @@ class MediaPlayer:
         self.stop()
         self.current_media = self.instance.media_new(video_path.as_posix())
         self.player.set_media(self.current_media)
+        self.player.set_fullscreen(True)
         self.player.play()
 
     def pause(self):
