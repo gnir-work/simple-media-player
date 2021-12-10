@@ -5,7 +5,7 @@ setup:
 
 
 install-apt-deps:
-	sudo apt-get install lirc -y
+	sudo apt-get install ir-keytable -y
 
 install-deps:
 	export GCC_FLAGS=$(GCC_FLAGS)
@@ -14,8 +14,14 @@ install-deps:
 install-dev-deps:
 	./venv/bin/pip install -r dev_requirments.txt
 
-install: install-dev-deps install-deps
+setup-ir-keys:
+	sudo ir-keytable -p all
+	sudo ir-keytable
 
+install: install-dev-deps install-deps setup-ir-keys
+
+test-ir-keys:
+	ir-keytable -t -s rc0
 
 vlc-controller-tests:
 	./venv/bin/python -m pytest vlc_controller/tests
