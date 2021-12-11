@@ -9,7 +9,7 @@ from pathlib import Path
 
 class MediaPlayer:
     def __init__(self) -> None:
-        self.instance: Instance = vlc.Instance()
+        self.instance: Instance = vlc.Instance("--vout mmal_vout")
         self.player = self.instance.media_player_new()
         self.current_media: Union[Media, None] = None
 
