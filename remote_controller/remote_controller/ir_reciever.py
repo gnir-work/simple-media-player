@@ -36,6 +36,7 @@ def get_single_remote_key(device: InputDevice, timeout: float = 0) -> Union[int,
     """
     # import ipdb;ipdb.set_trace()
     value = read_one_with_timeout(device, timeout)
+    print(value)
     if value:
         while read_one_with_timeout(device, LONG_PRESS_TIMEOUT):
             pass  # Clean long presses

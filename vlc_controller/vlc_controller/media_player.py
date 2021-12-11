@@ -23,10 +23,6 @@ class MediaPlayer:
         self.player.set_fullscreen(True)
         self.player.play()
 
-    def pause(self):
-        if self.player.get_state() == State.Playing:
-            self.player.pause()
+    def toggle_play(self):
+        self.player.pause()
 
-    def resume(self):
-        if self.player.get_state() == State.Paused:
-            self.player.pause()
