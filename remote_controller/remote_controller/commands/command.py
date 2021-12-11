@@ -3,8 +3,9 @@ from vlc_controller.series_player import SeriesPlayer
 from evdev import InputDevice
 from typing import Dict, Any
 
+
 class Command(ABC):
-    IR_DATA_TO_COMMAND_DATA: Dict[int, Any]  = {}
+    IR_DATA_TO_COMMAND_DATA: Dict[int, Any] = {}
 
     @classmethod
     def can(cls, ir_data: int) -> bool:
