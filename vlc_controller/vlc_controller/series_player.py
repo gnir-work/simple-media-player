@@ -1,7 +1,7 @@
 from os import listdir
 from typing import List
 
-from .media_player import MediaPlayer
+from media_player import MediaPlayer
 from pathlib import Path
 
 
