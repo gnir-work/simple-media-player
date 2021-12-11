@@ -1,0 +1,5 @@
+setup.py
+remote_control.egg-info/PKG-INFO
+remote_control.egg-info/SOURCES.txt
+remote_control.egg-info/dependency_links.txt
+remote_control.egg-info/top_level.txt
