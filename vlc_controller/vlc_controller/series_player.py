@@ -24,3 +24,6 @@ class SeriesPlayer:
 
     def toggle_play(self):
         self.media_player.toggle_play()
+        
+    def rewind_player(self, seconds: int):
+        self.media_player.rewind_player(seconds)

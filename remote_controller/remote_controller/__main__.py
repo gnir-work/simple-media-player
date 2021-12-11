@@ -4,9 +4,10 @@ import time
 from vlc_controller.series_player import SeriesPlayer
 from remote_controller.commands.change_episode import ChangeEpisode
 from remote_controller.commands.toggle_play import TogglePlay
+from remote_controller.commands.rewind_player import RewindPlayer
 from remote_controller.ir_reciever import get_single_remote_key
 
-COMMANDS = [ChangeEpisode, TogglePlay]
+COMMANDS = [ChangeEpisode, TogglePlay, RewindPlayer]
 
 
 def main_loop(device: InputDevice, player: SeriesPlayer):
