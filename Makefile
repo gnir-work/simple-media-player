@@ -9,7 +9,8 @@ install-apt-deps:
 
 install-deps:
 	export GCC_FLAGS=$(GCC_FLAGS)
-	./venv/bin/pip install -r requirments.txt
+	./venv/bin/pip install -e vlc_controller
+	./venv/bin/pip install -e remote_controller
 
 install-dev-deps:
 	./venv/bin/pip install -r dev_requirments.txt
@@ -27,3 +28,6 @@ vlc-controller-tests:
 	./venv/bin/python -m pytest vlc_controller/tests
 
 tests: vlc-controller-tests
+
+run-controller:
+	./venv/bin/python -m remote_controller

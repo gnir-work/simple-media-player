@@ -1,5 +1,5 @@
-Metadata-Version: 1.1
-Name: remote-control
+Metadata-Version: 1.0
+Name: remote-controller
 Version: 1.0
 Summary: UNKNOWN
 Home-page: UNKNOWN
@@ -8,4 +8,3 @@ Author-email: UNKNOWN
 License: UNKNOWN
 Description: UNKNOWN
 Platform: UNKNOWN
-Requires: vlc_controller

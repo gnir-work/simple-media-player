@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name="remote_control",
+    name="remote_controller",
     version="1.0",
-    requires=["vlc_controller"],
+    install_requires=["vlc_controller", "evdev"],
     packages=find_packages(),
 )

@@ -1,5 +1,5 @@
-from remote_control.commands.command import Command
-from remote_control.ir_reciever import get_single_remote_key
+from remote_controller.commands.command import Command
+from remote_controller.ir_reciever import get_single_remote_key
 from vlc_controller.series_player import SeriesPlayer
 from evdev import InputDevice
 
