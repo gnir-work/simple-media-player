@@ -7,12 +7,14 @@ from remote_controller.ir_reciever import get_single_remote_key
 
 COMMANDS = [ChangeEpisode]
 
+
 def main_loop(device: InputDevice, player: SeriesPlayer):
     while True:
         ir_data = get_single_remote_key(device)
         for command in COMMANDS:
             if command.can(ir_data):
                 command.execute(ir_data, device, player)
+
 
 if __name__ == "__main__":
     dev = InputDevice("/dev/input/event7")

@@ -1,5 +1,5 @@
 import time
-from evdev import InputDevice
+from evdev import InputDevice, InputEvent
 from typing import Union
 
 READ_INTERVAL = 0.01  # Seconds
@@ -19,9 +19,10 @@ def read_one_with_timeout(device: InputDevice, timeout: float = 0) -> Union[int,
     """
     timeout_time = time.time() + timeout
     while not timeout or timeout_time > time.time():
-        event = device.read_one()
+        event: InputEvent = device.read_one()
         if event and event.value:
-            return event.value
+            value: int = event.value
+            return value
         else:
             time.sleep(READ_INTERVAL)
     return None

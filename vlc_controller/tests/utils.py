@@ -14,10 +14,15 @@ def _get_current_open_files() -> List[Path]:
     for file_descriptor_name in listdir(CURRENT_PROCESS_FILE_DESCRIPTORS_FOLDER):
         try:
             open_files.append(
-                Path(readlink(Path(CURRENT_PROCESS_FILE_DESCRIPTORS_FOLDER) / file_descriptor_name))
+                Path(
+                    readlink(
+                        Path(CURRENT_PROCESS_FILE_DESCRIPTORS_FOLDER)
+                        / file_descriptor_name
+                    )
+                )
             )
         except FileNotFoundError:
-            pass # Some files open and close all the time
+            pass  # Some files open and close all the time
     return open_files
 
 
@@ -26,4 +31,6 @@ def check_if_file_is_open(file_name: str) -> bool:
     Check if the given file_name is open in the current process.
     :param file_name: The filename to test.
     """
-    return any(map(lambda open_file: file_name == open_file.name, _get_current_open_files()))
+    return any(
+        map(lambda open_file: file_name == open_file.name, _get_current_open_files())
+    )

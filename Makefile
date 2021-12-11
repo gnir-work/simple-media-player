@@ -31,3 +31,10 @@ tests: vlc-controller-tests
 
 run-controller:
 	./venv/bin/python -m remote_controller
+
+lint:
+	./venv/bin/python -m mypy vlc_controller
+	./venv/bin/python -m mypy remote_controller
+
+format:
+	./venv/bin/python -m black .

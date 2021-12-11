@@ -14,7 +14,7 @@ class SeriesPlayer:
     def episodes(self) -> List[Path]:
         episode_names = listdir(self.series_folder.as_posix())
         return [self.series_folder / episode_name for episode_name in episode_names]
-    
+
     def play_episode(self, episode_number: int):
         episode_path = self.episodes[episode_number - 1]
         self.media_player.play_video(episode_path)
