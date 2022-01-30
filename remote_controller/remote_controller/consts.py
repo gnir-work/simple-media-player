@@ -15,6 +15,7 @@ class Key:
         return f"{self.type} - {self.value}"
 
 
+DEVICE_NAME = "gpio_ir_recv"
 REMOTE_VALUE_TO_KEY = {
     22: Key("0", key_type=KeyType.NUMBER),
     12: Key("1", key_type=KeyType.NUMBER),
