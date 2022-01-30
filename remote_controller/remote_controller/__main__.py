@@ -7,6 +7,7 @@ from remote_controller.commands.toggle_play import TogglePlay
 from remote_controller.commands.rewind_player import RewindPlayer
 from remote_controller.commands.power_off import PowerOff
 from remote_controller.ir_reciever import get_single_remote_key
+from remote_controller.utils import get_gpio_device
 
 COMMANDS = [ChangeEpisode, TogglePlay, RewindPlayer, PowerOff]
 
@@ -20,8 +21,8 @@ def main_loop(device: InputDevice, player: SeriesPlayer):
 
 
 if __name__ == "__main__":
-    dev = InputDevice("/dev/input/event7")
+    device = get_gpio_device()
     player = SeriesPlayer(
         Path("/home/pi/Code/simple-media-player/vlc_controller/tests/test_episodes")
     )
-    main_loop(dev, player)
+    main_loop(device, player)
