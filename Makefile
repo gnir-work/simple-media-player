@@ -4,17 +4,22 @@ PWD:=$(shell pwd)
 LOG_FILE:=
 
 
-setup:
+setup-venv:
 	if [ ! -d $(VENV_NAME) ]; then python3 -m venv $(VENV_NAME); else echo "Skipping venv creation"; fi
+
+setup-systemd-service:
+	sudo cp ./remote_controller/remote_controller.service /etc/systemd/user
+	systemctl daemon-reload --user
+	systemctl enable remote_controller --user
 
 install-apt-deps:
 	sudo apt-get install vlc ir-keytable -y
 
-install-deps: setup
+install-deps: setup-venv
 	$(PIP_LOCATION) install -e vlc_controller
 	$(PIP_LOCATION) install -e remote_controller
 
-install-dev-deps: setup
+install-dev-deps: setup-venv
 	$(PIP_LOCATION) install -r dev_requirments.txt
 
 setup-ir-keys: install-apt-deps
@@ -31,7 +36,7 @@ vlc-controller-tests:
 
 tests: vlc-controller-tests
 
-run-controller:
+run-controller: setup-ir-keys
 	if [ ! -z $(LOG_FILE) ]; then\
 		./venv/bin/python -m remote_controller -d $(PWD)/vlc_controller/tests/test_episodes -l $(LOG_FILE);\
 	else\
