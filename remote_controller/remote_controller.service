@@ -7,7 +7,7 @@ Type=simple
 Environment="DISPLAY=:0"
 Environment="XAUTHORITY=/home/pi/.Xauthority"
 PIDFile=/var/run/remote_controller/%i.pid
-ExecStart=make -C /home/pi/Code/remote_pycharm/simple-media-player run-controller LOG_FILE=/var/log/remote_controller/remote_controller.log
+ExecStart=make -C /home/pi/Code/remote_pycharm/simple-media-player run-controller SERIES_DIRECTORY=/mnt/usb LOG_FILE=/var/log/remote_controller/remote_controller.log
 
 [Install]
 WantedBy=default.target

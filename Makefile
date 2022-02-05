@@ -1,6 +1,7 @@
 VENV_NAME=./venv
 PIP_LOCATION=$(VENV_NAME)/bin/pip
 PWD:=$(shell pwd)
+SERIES_DIRECTORY:=$(PWD)/vlc_controller/tests/test_episodes
 LOG_FILE:=
 
 
@@ -38,9 +39,9 @@ tests: vlc-controller-tests
 
 run-controller: setup-ir-keys
 	if [ ! -z $(LOG_FILE) ]; then\
-		./venv/bin/python -m remote_controller -d /mnt/usb -l $(LOG_FILE);\
+		./venv/bin/python -m remote_controller -d $(SERIES_DIRECTORY)  -l $(LOG_FILE);\
 	else\
-	  	./venv/bin/python -m remote_controller -d /mnt/usb;\
+	  	./venv/bin/python -m remote_controller -d $(SERIES_DIRECTORY);\
   	fi
 
 lint:
