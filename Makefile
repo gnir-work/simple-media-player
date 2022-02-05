@@ -1,25 +1,25 @@
-GCC_FLAGS="-fcommon"
+VENV_NAME=./venv
+PIP_LOCATION=$(VENV_NAME)/bin/pip
+
 
 setup:
-	python3 -m venv venv
-
+	if [ ! -d $(VENV_NAME) ]; then python3 -m venv $(VENV_NAME); else echo "Skipping venv creation"; fi
 
 install-apt-deps:
-	sudo apt-get install ir-keytable -y
+	sudo apt-get install vlc ir-keytable -y
 
-install-deps:
-	export GCC_FLAGS=$(GCC_FLAGS)
-	./venv/bin/pip install -e vlc_controller
-	./venv/bin/pip install -e remote_controller
+install-deps: setup
+	$(PIP_LOCATION) install -e vlc_controller
+	$(PIP_LOCATION) install -e remote_controller
 
-install-dev-deps:
-	./venv/bin/pip install -r dev_requirments.txt
+install-dev-deps: setup
+	$(PIP_LOCATION) install -r dev_requirments.txt
 
-setup-ir-keys:
+setup-ir-keys: install-apt-deps
 	sudo ir-keytable -p all
 	sudo ir-keytable
 
-install: install-dev-deps install-deps setup-ir-keys
+install: install-dev-deps install-deps
 
 test-ir-keys:
 	ir-keytable -t -s rc0

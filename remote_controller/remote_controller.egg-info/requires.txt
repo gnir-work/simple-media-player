@@ -1,2 +1,2 @@
-evdev
 vlc_controller
+evdev
