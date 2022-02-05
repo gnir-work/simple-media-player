@@ -1,11 +1,13 @@
 import time
 from evdev import InputDevice, InputEvent
 from typing import Union
+from logbook import Logger
 
 READ_INTERVAL = 0.01  # Seconds
 LONG_PRESS_TIMEOUT = 0.15
 READ_COMMAND_TIMEOUT = 0.85
 
+logger = Logger("IR_utils")
 
 def read_one_with_timeout(device: InputDevice, timeout: float = 0) -> Union[int, None]:
     """
@@ -34,9 +36,7 @@ def get_single_remote_key(device: InputDevice, timeout: float = 0) -> Union[int,
     :param device: [description]
     :type device: InputDevice
     """
-    # import ipdb;ipdb.set_trace()
     value = read_one_with_timeout(device, timeout)
-    print(value)
     if value:
         while read_one_with_timeout(device, LONG_PRESS_TIMEOUT):
             pass  # Clean long presses

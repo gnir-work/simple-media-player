@@ -1,7 +1,8 @@
+from evdev import InputDevice
+
 from remote_controller.commands.command import Command
 from remote_controller.ir_reciever import get_single_remote_key
 from vlc_controller.series_player import SeriesPlayer
-from evdev import InputDevice
 
 
 class ChangeEpisode(Command):
@@ -19,14 +20,13 @@ class ChangeEpisode(Command):
         74: "9",
     }
 
-    @classmethod
-    def execute(cls, ir_data: int, device: InputDevice, player: SeriesPlayer):
-        episode_number = cls.IR_DATA_TO_COMMAND_DATA[ir_data]
-        next_ir_data = get_single_remote_key(device, timeout=cls.EPISODE_CHANGE_TIMEOUT)
+    def execute(self, ir_data: int, device: InputDevice, player: SeriesPlayer):
+        episode_number = self.IR_DATA_TO_COMMAND_DATA[ir_data]
+        next_ir_data = get_single_remote_key(device, timeout=self.EPISODE_CHANGE_TIMEOUT)
         while next_ir_data:
-            if cls.can(next_ir_data):
-                episode_number += cls.IR_DATA_TO_COMMAND_DATA[ir_data]
+            if self.can(next_ir_data):
+                episode_number += self.IR_DATA_TO_COMMAND_DATA[ir_data]
             next_ir_data = get_single_remote_key(
-                device, timeout=cls.EPISODE_CHANGE_TIMEOUT
+                device, timeout=self.EPISODE_CHANGE_TIMEOUT
             )
         player.play_episode(int(episode_number))

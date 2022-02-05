@@ -6,6 +6,7 @@ setup(
     version="1.0",
     install_requires=[
         "python-vlc",
+        "logbook",
     ],
     packages=find_packages(),
 )

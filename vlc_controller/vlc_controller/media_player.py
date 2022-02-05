@@ -26,6 +26,6 @@ class MediaPlayer:
     def toggle_play(self):
         self.player.pause()
 
-    def rewind_player(self, seconds: int):
+    def rewind_player(self, seconds: float):
         current_time = self.player.get_position()
         self.player.set_position(current_time + seconds)
