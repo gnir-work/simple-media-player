@@ -38,9 +38,9 @@ tests: vlc-controller-tests
 
 run-controller: setup-ir-keys
 	if [ ! -z $(LOG_FILE) ]; then\
-		./venv/bin/python -m remote_controller -d $(PWD)/vlc_controller/tests/test_episodes -l $(LOG_FILE);\
+		./venv/bin/python -m remote_controller -d /mnt/usb -l $(LOG_FILE);\
 	else\
-	  	./venv/bin/python -m remote_controller -d $(PWD)/vlc_controller/tests/test_episodes;\
+	  	./venv/bin/python -m remote_controller -d /mnt/usb;\
   	fi
 
 lint:
