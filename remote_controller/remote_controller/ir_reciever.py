@@ -9,6 +9,7 @@ READ_COMMAND_TIMEOUT = 0.85
 
 logger = Logger("IR_utils")
 
+
 def read_one_with_timeout(device: InputDevice, timeout: float = 0) -> Union[int, None]:
     """
     Reads the next event from the give device.

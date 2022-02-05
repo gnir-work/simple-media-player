@@ -22,7 +22,9 @@ class ChangeEpisode(Command):
 
     def execute(self, ir_data: int, device: InputDevice, player: SeriesPlayer):
         episode_number = self.IR_DATA_TO_COMMAND_DATA[ir_data]
-        next_ir_data = get_single_remote_key(device, timeout=self.EPISODE_CHANGE_TIMEOUT)
+        next_ir_data = get_single_remote_key(
+            device, timeout=self.EPISODE_CHANGE_TIMEOUT
+        )
         while next_ir_data:
             if self.can(next_ir_data):
                 episode_number += self.IR_DATA_TO_COMMAND_DATA[ir_data]

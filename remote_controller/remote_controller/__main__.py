@@ -13,7 +13,7 @@ from remote_controller.ir_reciever import get_single_remote_key
 from remote_controller.utils import get_gpio_device
 from vlc_controller.series_player import SeriesPlayer
 
-logger = Logger('IR_MAIN')
+logger = Logger("IR_MAIN")
 COMMANDS = [ChangeEpisode, TogglePlay, RewindPlayer, PowerOff]
 
 
@@ -35,8 +35,12 @@ def setup_loggers(log_file: str):
 
 
 @click.command()
-@click.option("-d", "--media-directory", required=True,
-              help="The absolute path to the folder with the media to be played")
+@click.option(
+    "-d",
+    "--media-directory",
+    required=True,
+    help="The absolute path to the folder with the media to be played",
+)
 @click.option("-l", "--log-file", default=None, help="The file to output the logs to")
 def main(media_directory: str, log_file: str):
     setup_loggers(log_file)
