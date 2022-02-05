@@ -31,7 +31,7 @@ def loop(device: InputDevice, player: SeriesPlayer):
 def setup_loggers(log_file: str):
     StreamHandler(sys.stdout).push_application()
     if log_file:
-        FileHandler(log_file).push_application()
+        FileHandler(log_file, bubble=True).push_application()
 
 
 @click.command()
