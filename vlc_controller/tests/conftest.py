@@ -1,5 +1,7 @@
+import sys
 from pathlib import Path
 
+from logbook import StreamHandler
 from pytest import fixture, yield_fixture
 
 from tests.consts import EPISODES_FOLDER
@@ -16,3 +18,8 @@ def series_player(episodes_folder):
     player = SeriesPlayer(episodes_folder)
     yield player
     player.stop()
+
+
+@fixture(scope="session", autouse=True)
+def setup_logger():
+    StreamHandler(sys.stdout).push_application()
