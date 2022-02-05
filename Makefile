@@ -1,6 +1,8 @@
 VENV_NAME=./venv
 PIP_LOCATION=$(VENV_NAME)/bin/pip
 PWD:=$(shell pwd)
+LOG_FILE:=
+
 
 setup:
 	if [ ! -d $(VENV_NAME) ]; then python3 -m venv $(VENV_NAME); else echo "Skipping venv creation"; fi
@@ -30,7 +32,11 @@ vlc-controller-tests:
 tests: vlc-controller-tests
 
 run-controller:
-	./venv/bin/python -m remote_controller -d $(PWD)/vlc_controller/tests/test_episodes
+	if [ ! -z $(LOG_FILE) ]; then\
+		./venv/bin/python -m remote_controller -d $(PWD)/vlc_controller/tests/test_episodes -l $(LOG_FILE);\
+	else\
+	  	./venv/bin/python -m remote_controller -d $(PWD)/vlc_controller/tests/test_episodes;\
+  	fi
 
 lint:
 	./venv/bin/python -m mypy vlc_controller
