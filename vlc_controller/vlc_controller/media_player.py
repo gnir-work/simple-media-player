@@ -29,4 +29,3 @@ class MediaPlayer:
     def rewind_player(self, seconds: int):
         current_time = self.player.get_position()
         self.player.set_position(current_time + seconds)
-

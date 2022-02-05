@@ -5,10 +5,7 @@ from evdev import InputDevice
 
 
 class RewindPlayer(Command):
-    IR_DATA_TO_COMMAND_DATA = {
-        7: -0.02,
-        9: 0.02
-    }
+    IR_DATA_TO_COMMAND_DATA = {7: -0.02, 9: 0.02}
 
     @classmethod
     def execute(cls, ir_data: int, device: InputDevice, player: SeriesPlayer):
