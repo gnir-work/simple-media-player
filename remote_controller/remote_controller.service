@@ -1,0 +1,13 @@
+[Unit]
+Description=Simple IR Remote controller media server
+After=graphical-session.target
+
+[Service]
+Type=simple
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/pi/.Xauthority"
+PIDFile=/var/run/remote_controller/%i.pid
+ExecStart=make -C /home/pi/Code/remote_pycharm/simple-media-player run-controller -l /tmp/test2.log
+
+[Install]
+WantedBy=default.target
