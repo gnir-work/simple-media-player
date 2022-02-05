@@ -1,8 +1,9 @@
 import sys
+import click
 from pathlib import Path
 
 from evdev import InputDevice
-from logbook import Logger, StreamHandler
+from logbook import Logger, StreamHandler, FileHandler
 
 from remote_controller.commands.change_episode import ChangeEpisode
 from remote_controller.commands.power_off import PowerOff
@@ -27,18 +28,22 @@ def loop(device: InputDevice, player: SeriesPlayer):
                 command.execute(ir_data, device, player)
 
 
-def setup_loggers():
+def setup_loggers(log_file: str):
     StreamHandler(sys.stdout).push_application()
+    if log_file:
+        FileHandler(log_file).push_application()
 
 
-def main():
-    setup_loggers()
+@click.command()
+@click.option("-d", "--media-directory", required=True,
+              help="The absolute path to the folder with the media to be played")
+@click.option("-l", "--log-file", default=None, help="The file to output the logs to")
+def main(media_directory: str, log_file: str):
+    setup_loggers(log_file)
     logger.info("Started main IR loop...")
     device = get_gpio_device()
     logger.info(f"Found IR device {device.name}")
-    player = SeriesPlayer(
-        Path("/home/pi/Code/simple-media-player/vlc_controller/tests/test_episodes")
-    )
+    player = SeriesPlayer(Path(media_directory))
     loop(device, player)
 
 
