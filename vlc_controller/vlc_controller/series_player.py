@@ -1,4 +1,4 @@
-from os import listdir
+from os import walk
 from typing import List
 
 from vlc_controller.media_player import MediaPlayer
@@ -15,7 +15,7 @@ class SeriesPlayer:
 
     @property
     def episodes(self) -> List[Path]:
-        episode_names = listdir(self.series_folder.as_posix())
+        _, _, episode_names = next(walk(self.series_folder.as_posix()))
         return [self.series_folder / episode_name for episode_name in episode_names]
 
     def play_episode(self, episode_number: int):
