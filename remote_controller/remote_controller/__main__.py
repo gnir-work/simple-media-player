@@ -19,14 +19,16 @@ COMMANDS = [ChangeEpisode, TogglePlay, RewindPlayer, PowerOff]
 
 def loop(device: InputDevice, player: SeriesPlayer):
     while True:
-        logger.info("Waiting for next IR command")
-        ir_data = get_single_remote_key(device)
-        logger.info(f"Got {ir_data} from IR remote")
-        for command in COMMANDS:
-            command = command()
-            if command.can(ir_data):
-                command.execute(ir_data, device, player)
-
+        try:
+            logger.info("Waiting for next IR command")
+            ir_data = get_single_remote_key(device)
+            logger.info(f"Got {ir_data} from IR remote")
+            for command in COMMANDS:
+                command = command()
+                if command.can(ir_data):
+                    command.execute(ir_data, device, player)
+        except Exception:
+            logger.exception()
 
 def setup_loggers(log_file: str):
     StreamHandler(sys.stdout).push_application()
@@ -56,4 +58,3 @@ if __name__ == "__main__":
         main()
     except Exception:
         logger.exception()
-        raise

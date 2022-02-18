@@ -1,3 +1,4 @@
-vlc_controller
+click
 evdev
 logbook
+vlc_controller
