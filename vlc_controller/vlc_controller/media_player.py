@@ -5,6 +5,7 @@ from typing import Union
 import vlc
 from vlc import Instance, Media, State
 from pathlib import Path
+import time
 
 
 class MediaPlayer:
@@ -20,8 +21,9 @@ class MediaPlayer:
         self.stop()
         self.current_media = self.instance.media_new(video_path.as_posix())
         self.player.set_media(self.current_media)
-        self.player.set_fullscreen(True)
         self.player.play()
+        time.sleep(8)
+        self.player.set_fullscreen(True)
 
     def toggle_play(self):
         self.player.pause()

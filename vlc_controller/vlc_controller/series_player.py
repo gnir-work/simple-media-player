@@ -16,7 +16,7 @@ class SeriesPlayer:
     @property
     def episodes(self) -> List[Path]:
         _, _, episode_names = next(walk(self.series_folder.as_posix()))
-        return [self.series_folder / episode_name for episode_name in episode_names]
+        return sorted([self.series_folder / episode_name for episode_name in episode_names])
 
     def play_episode(self, episode_number: int):
         self.logger.info(f"Playing episode {episode_number}")
