@@ -23,7 +23,7 @@ Understanding the basic concepts of an interactive screen were very hard for her
 
 ## The solution
 
-A custom __easy to use__ streaming device power by raspberry pie.
+A custom __easy to use__ streaming device powered by Raspberry Pie.
 <img src="./docs/finished.png" alt="img" style="zoom:50%;" />
 
 - [x] ### The Fear
