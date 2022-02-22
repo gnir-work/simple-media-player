@@ -8,7 +8,13 @@ def popup_message(message: str, timeout: int):
     @param timeout: The timeout before the message disappears in seconds.
     """
     layout = [[sg.Text(message)]]
-    window = sg.Window("Popup", layout, no_titlebar=True, keep_on_top=True, font=('Arial', 35, "italic"))
+    window = sg.Window(
+        "Popup",
+        layout,
+        no_titlebar=True,
+        keep_on_top=True,
+        font=("Arial", 35, "italic"),
+    )
 
     while True:
         _, _ = window.read(timeout=1000 * timeout)

@@ -30,6 +30,7 @@ def loop(device: InputDevice, player: SeriesPlayer):
         except Exception:
             logger.exception()
 
+
 def setup_loggers(log_file: str):
     StreamHandler(sys.stdout).push_application()
     if log_file:

@@ -7,6 +7,7 @@ from logbook import Logger
 
 logger = Logger("Change Episode Command")
 
+
 class ChangeEpisode(Command):
     EPISODE_CHANGE_TIMEOUT = 1
     IR_DATA_TO_COMMAND_DATA = {
