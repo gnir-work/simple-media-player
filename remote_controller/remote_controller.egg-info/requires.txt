@@ -1,4 +1,0 @@
-click
-evdev
-logbook
-vlc_controller
