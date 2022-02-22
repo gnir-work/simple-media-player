@@ -6,6 +6,7 @@ import vlc
 from vlc import Instance, Media, State
 from datetime import timedelta
 from pathlib import Path
+from vlc_controller.gui import popup_message
 import time
 
 
@@ -22,6 +23,7 @@ class MediaPlayer:
 
     def play_video(self, video_path: Path):
         self.stop()
+        popup_message(f"вы просматриваете эпизод {video_path.name}", 5)
         self.current_media = self.instance.media_new(video_path.as_posix())
         self.player.set_media(self.current_media)
         self.player.play()

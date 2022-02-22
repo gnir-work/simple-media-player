@@ -7,6 +7,7 @@ setup(
     install_requires=[
         "python-vlc",
         "logbook",
+        "pysimplegui"
     ],
     packages=find_packages(),
 )
